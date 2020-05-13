@@ -17,7 +17,12 @@ class NotificationModule {
     }
 
     public function byMail($from, $email,$contenue) {
-
+        $message = new \Swift_Message('Notifications !!!');
+        $message->setFrom($from);
+        $message->setTo($email);
+        $message->setSubject('Votre informations');
+        $message->setBody($contenue, 'text/html');
+        $this->mailer->send($message);
 
     }
     public function byDb($email,$contenue) {
@@ -28,10 +33,10 @@ class NotificationModule {
         $notification->setEmail($email);
         $notification->setContenu($contenue);
         $notification->setEtat('non lue');
-        $notification->setCreatedAt(hfhfhhfhfhf);
+        $notification->setCreatedAt($date);
         $entityManager->persist($notification);
         $entityManager->flush();
 
-}
+    }
 
 }

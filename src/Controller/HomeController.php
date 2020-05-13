@@ -14,8 +14,9 @@ class HomeController extends AbstractController
      */
     public function index(NotificationModule $notificationModule)
     {
-        //
-      //$notificationModule->byDb('bbbbbb','ffffff');
+
+      $notificationModule->byDb('bbbbbb','ffffff');
+      $notificationModule->byMail('bbbbb','bbbbbb','dddddd');
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
