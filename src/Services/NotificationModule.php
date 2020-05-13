@@ -32,7 +32,7 @@ class NotificationModule {
         $date = new \DateTime();
         $notification->setEmail($email);
         $notification->setContenu($contenue);
-        $notification->setEtat('non lue');
+        $notification->setEtat('true');
         $notification->setCreatedAt($date);
         $entityManager->persist($notification);
         $entityManager->flush();
