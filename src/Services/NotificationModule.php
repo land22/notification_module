@@ -38,7 +38,7 @@ class NotificationModule {
         $message->setSubject('Votre informations');
         $message->setBody($contenue, 'text/html');
         $this->mailer->send($message);
-        
+
 
     }
 
