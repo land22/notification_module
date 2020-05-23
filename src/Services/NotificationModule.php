@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Entity\Notifications;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\NotificationEmail;
 
 
 class NotificationModule {
@@ -16,16 +17,7 @@ class NotificationModule {
         $this->mailer = $mailer;
     }
 
-    public function byMail($from, $email,$contenue) {
-        $message = new \Swift_Message('Notifications !!!');
-        $message->setFrom($from);
-        $message->setTo($email);
-        $message->setSubject('Votre informations');
-        $message->setBody($contenue, 'text/html');
-        $this->mailer->send($message);
-
-    }
-    public function byDb($email,$contenue) {
+    public function informer($email,$contenue) {
 
         $entityManager = $this->em;
         $notification = new Notifications();
@@ -38,5 +30,17 @@ class NotificationModule {
         $entityManager->flush();
 
     }
+
+    public function byMail($from, $email,$contenue) {
+        $message = new \Swift_Message('Notifications !!!');
+        $message->setFrom($from);
+        $message->setTo($email);
+        $message->setSubject('Votre informations');
+        $message->setBody($contenue, 'text/html');
+        $this->mailer->send($message);
+        
+
+    }
+
 
 }
