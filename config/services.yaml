@@ -31,10 +31,10 @@ services:
         class: App\Services\JwtProvider
         arguments:
             $secret: '%env(MERCURE_JWT_KEY)%'
-    CookieGeneratorService:
-        class: App\Services\CookieGenerator
+    App\Services\CookieGenerator:
         arguments:
             $secret: '%env(MERCURE_JWT_KEY)%'
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

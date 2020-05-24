@@ -3,31 +3,33 @@
 namespace App\Services;
 use App\Entity\Notifications;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\String_;
 use Symfony\Bridge\Twig\Mime\NotificationEmail;
-
+use Symfony\Component\Mercure\Update;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
 
 class NotificationModule {
 
     protected $em;
     private $mailer;
+    protected $bus;
 
-    public function __construct(\Swift_Mailer $mailer, EntityManagerInterface $entityManager)
+    public function __construct(\Swift_Mailer $mailer, EntityManagerInterface $entityManager, MessageBusInterface $bus )
     {
         $this->em = $entityManager;
         $this->mailer = $mailer;
+        $this->bus = $bus;
     }
 
-    public function informer($email,$contenue) {
+    public function informer($contenue) {
 
-        $entityManager = $this->em;
-        $notification = new Notifications();
-        $date = new \DateTime();
-        $notification->setEmail($email);
-        $notification->setContenu($contenue);
-        $notification->setEtat('true');
-        $notification->setCreatedAt($date);
-        $entityManager->persist($notification);
-        $entityManager->flush();
+    $update = new Update('http://localhost:8000/',json_encode([
+        'message' => $contenue,
+    ]))?:String;
+        $this->bus->dispatch($update);
 
     }
 
