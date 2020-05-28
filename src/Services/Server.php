@@ -4,7 +4,6 @@ use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserTo
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use App\Repository\UserRepository;
 use App\Entity\Notifications;
 class Server implements MessageComponentInterface
 {

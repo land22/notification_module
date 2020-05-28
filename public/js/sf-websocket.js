@@ -1,7 +1,7 @@
 
 (function () {
     'use to notification';
-    // pour cette fonctionnalité IP_SERVER = 127.0.0.1
+    // pour cette fonctionnalité IP_SERVER = 127.0.0.1 qui doit être revu lors du déployement
     var _receiver = document.getElementById('ws-content-receiver');
     var ws = new webSocket("ws://IP_SERVER:8080");
     ws.onopen = function() {

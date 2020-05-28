@@ -23,18 +23,6 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    NotificationModule:
-        class: App\Services\NotificationModule
-        arguments: [ "@doctrine.orm.entity_manager" ]
-
-    JwtProviderService:
-        class: App\Services\JwtProvider
-        arguments:
-            $secret: '%env(MERCURE_JWT_KEY)%'
-    App\Services\CookieGenerator:
-        arguments:
-            $secret: '%env(MERCURE_JWT_KEY)%'
-
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
