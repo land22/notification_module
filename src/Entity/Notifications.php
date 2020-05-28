@@ -28,9 +28,9 @@ class Notifications
     private $contenu;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=255)
      */
-    private $etat;
+    private $token;
 
     /**
      * @ORM\Column(type="datetime")
@@ -66,14 +66,14 @@ class Notifications
         return $this;
     }
 
-    public function getEtat(): ?string
+    public function getToken(): ?string
     {
-        return $this->etat;
+        return $this->token;
     }
 
-    public function setEtat(string $etat): self
+    public function setToken(string $token): self
     {
-        $this->etat = $etat;
+        $this->token = $token;
 
         return $this;
     }

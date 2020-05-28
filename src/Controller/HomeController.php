@@ -12,6 +12,7 @@ use App\Services\CookieGenerator;
 use Symfony\Component\Mercure\Publisher;
 use Symfony\Component\Mercure\Update;
 use Symfony\Component\Mercure\PublisherInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserToken;
 
 class HomeController extends AbstractController
 {
@@ -20,12 +21,7 @@ class HomeController extends AbstractController
      */
     public function index(NotificationModule $notificationModule, CookieGenerator $cookieGenerator )
     {
-      //$notificationModule->informer('Création d\'un compte sur notre application');
-      //$notificationModule->byMail('landrywabo8@gmail.com','landrywabo8@gmail.com','Création d\'un compte sur notre application');
 
-        /*return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);*/
         $reponse = $this->render('home/index.html.twig',[]);
         $reponse->headers->setCookie($cookieGenerator->generate());
         return $reponse;
